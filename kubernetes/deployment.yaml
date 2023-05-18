@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: zookeeper
+  namespace: folder4study
+  labels:
+    app: zookeeper
+    version: latest
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: zookeeper
+  template:
+    metadata:
+      name: zookeeper
+      namespace: folder4study
+      labels:
+        app: zookeeper
+        version: latest
+    spec:
+      containers:
+        - name: zookeeper
+          image: wurstmeister/zookeeper
+          imagePullPolicy: IfNotPresent
+          ports:
+            - name: port
+              containerPort: 2181
+              protocol: TCP
